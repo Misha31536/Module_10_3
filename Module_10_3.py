@@ -4,14 +4,14 @@ from threading import Thread, Lock
 
 class Bank:
 
-    def __init__(self, lock = None, balance = 0):
+    def __init__(self, lock = None , balance = 0):
         self.balance = balance
         self.lock = Lock()
 
     def deposit(self): # пополнение - это увеличение баланса на случайное целое число от 50 до 500.
         for i in range(100): # Будет совершать 100 транзакций пополнения средств.
-            if self.balance >= 500 and self.lock == self.lock.locked(): # Если баланс больше или равен 500 и замок lock заблокирован - lock.locked(), то разблокировать его методом release.
-                self.lock.release()
+            if self.balance >= 500 and self.lock.locked(): # Если баланс больше или равен 500 и замок lock заблокирован - lock.locked(),
+                self.lock.release() # то разблокировать его методом release.
             cash = randint(50, 500)
             self.balance += cash
             print(f'Пополнение баланса на {cash}, Текущий баланс {self.balance}руб.')
@@ -38,5 +38,4 @@ th1.join()
 th2.join()
 
 print(f'Итоговый баланс: {bk.balance}')
-
 
